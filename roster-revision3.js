@@ -41,6 +41,8 @@
  const sortName=name=>name.replace(/^长/,'昌').replace(/^椎/,'追');
  for(const c of ROSTER)c.pinyinInitial=initials[c.name[0]]||'z';
  ROSTER.sort((a,b)=>a.pinyinInitial.localeCompare(b.pinyinInitial)||collator.compare(sortName(a.name),sortName(b.name)));
+ // 救星固定在第一位
+ {const i=ROSTER.findIndex(c=>c.name==='救星');if(i>0)ROSTER.unshift(ROSTER.splice(i,1)[0]);}
  window.ROSTER_BY_ID=new Map(ROSTER.map(c=>[c.id,c]));
  window.MIMIC_POOLS=Array.from({length:6},(_,index)=>ROSTER.filter(c=>c!==mimic).flatMap(c=>(index<2?[index]:index===5?[5]:[2,3,4]).map(i=>({characterId:c.id,characterName:c.name,index:i,skill:c.skills[i]}))));
 })();
