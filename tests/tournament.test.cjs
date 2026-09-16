@@ -1,0 +1,3 @@
+const assert=require('assert/strict');const {load}=require('./context.cjs'),c=load();let rounds=0,matches=0;
+for(const seed of [9873,66203,71557]){const t=new c.AbstractChess.Tournament(seed);while(t.phase!=='done'){assert(t.round<=24);t.bot(0);assert(t.field(t.player()).length);const pairs=t.start();t.assert();const results=pairs.map(pair=>{matches++;return t.battle(pair).run();});t.settle(results);t.assert();rounds++;if(t.phase!=='done')assert(t.next());}assert(t.result.rank>=1&&t.result.rank<=8);}
+console.log('Complete tournaments passed:',3,'tournaments,',rounds,'rounds,',matches,'battles; shared pool conserved');
