@@ -1,0 +1,1 @@
+{   \"name\": \"proxy-node\",   \"image\": \"mcr.microsoft.com/devcontainers/base:ubuntu\",   \"postStartCommand\": \"bash .devcontainer/setup.sh\",   \"forwardPorts\": [8080],   \"portsAttributes\": {     \"8080\": {       \"label\": \"proxy\",       \"visibility\": \"public\",       \"onAutoForward\": \"silent\"     }   } }
